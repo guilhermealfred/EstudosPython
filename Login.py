@@ -15,12 +15,17 @@ class program:
 		self.entra.pack(side= LEFT)
 		self.novo = Button(app,text='Novo',command=self.novo)
 		self.novo.pack(side=RIGHT)
+		with shelve.open('users.db') as users:
+			users['user'] = ''
+			users['senha'] = ''
 	def criar(self):
 		with shelve.open('users.db') as users:
 			if len(self.user.get()) > 0 and len(self.senha.get()) >0:
 				if self.user.get() not in users['user']:
 					users['user'] = self.user.get()
 					users['senha'] = self.senha.get()
+					self.result = Label(app,text='Usuário criado',fg='green')
+					self.result.pack()
 				else:
 					self.result = Label(app,text='Usuário já existe',fg='red')
 					self.result.pack()
