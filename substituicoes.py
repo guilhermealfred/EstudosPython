@@ -36,6 +36,7 @@ class worldcupinfo:
 					for c in zip(x,y):
 						writer.writerow((c))
 					writer.writerow(('','%s'%(i['away_team_country']),'\n'))
+					writer.writerow(('IN','OUT'))
 					x = [s['player'] for s in i['away_team_events'] if s['type_of_event']== 'substitution-in']
 					y = [s['player'] for s in i['away_team_events'] if s['type_of_event']== 'substitution-out']
 					for c in zip(x,y):
